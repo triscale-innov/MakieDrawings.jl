@@ -3,7 +3,7 @@ using MathTeXEngine
 using LaTeXStrings
 using StaticArrays
 
-using GLMakie
+using CairoMakie
 
 function segments_from_extrema(begin_points,end_points)
     nseg = length(begin_points)
@@ -107,6 +107,8 @@ function drawsource2D(nx=15,ny=12,dx=0.5,dy=0.5,sxc=2.95,syc=1.85,sxr=1.2)
     # hidespines!(ax1)
     lx,ly,xs,ys,nodes=drawgrid_lines_and_node(ax1,nx,ny,dx,dy)
     #texts Pij
+    index_font_size = 45
+
     lP(i,j) = latexstring("$i,$j")
     texts = vec([lP(i,j) for i ∈ 1:nx, j ∈ 1:ny])
     spacing=0.05
@@ -127,7 +129,7 @@ function drawsource2D(nx=15,ny=12,dx=0.5,dy=0.5,sxc=2.95,syc=1.85,sxr=1.2)
     source_node_positions = vec([position((i,j)) for i ∈ Imin[1]:Imax[1], j ∈ Imin[2]:Imax[2]])
     scatter!(ax1,source_node_positions,color=:red,markersize=40)  
     # text to the bottom
-    siminpmin(sxc,syc) = latexstring("~~Imin=($(Imin[1]),$(Imin[2]))~~Imax=($(Imax[1]),$(Imax[2]))\\rightarrow n_{sx}=5~~n_{sy}=5")
+    siminpmin(sxc,syc) = latexstring("~~I_{min}=($(Imin[1]),$(Imin[2]))~~I_{max}=($(Imax[1]),$(Imax[2]))\\rightarrow n_{sx}=5~~n_{sy}=5")
     text!(ax1,(dx,-0.5dy),text=siminpmin(sxc,syc),align=(:left,:top))
     save("source_grid.png",fig)
     fig
@@ -141,6 +143,8 @@ function drawsensor2D(nx=10,ny=12,dx=0.5,dy=0.5,sxc=0,syc=3.1,sxr=1.22)
     # hidespines!(ax1)
     lx,ly,xs,ys,nodes=drawgrid_lines_and_node(ax1,nx,ny,dx,dy)
     #texts Pij
+    index_font_size = 45
+
     lP(i,j) = latexstring("$i,$j")
     texts = vec([lP(i,j) for i ∈ 1:nx, j ∈ 1:ny])
     spacing=0.05
