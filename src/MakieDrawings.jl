@@ -209,7 +209,6 @@ function drawsplit(N=SVector{2,Int}(6,8),
     texts = vec([lP(i,j) for i ∈ 1:Nl[1], j ∈ 1:Nl[2]])
     spacing=0.05
 
-
     lx11,ly11,xs11,ys11,nodes11=drawgrid_lines_and_node(ax1,Nl[1],Nl[2],Δ[1],Δ[2],-ϵ,-ϵ,color=:orange)  
     text!(ax1, [(n[1]-spacing,n[2]-spacing) for n ∈ nodes11 ],text=texts,color=:orange,align=(:right,:top),fontsize=index_font_size)  
     lx21,ly21,xs21,ys21,nodes21=drawgrid_lines_and_node(ax1,Nl[1],Nl[2],Δ[1],Δ[2],(Nl[1]-2)*Δ[1]+ϵ,-ϵ,color=:green)    
@@ -220,10 +219,6 @@ function drawsplit(N=SVector{2,Int}(6,8),
     text!(ax1, [(n[1]+spacing,n[2]+2spacing) for n ∈ nodes22 ],text=texts,color=:red,align=(:left,:bottom),fontsize=index_font_size)  
 
 
-    # text to the top
-    # pmin_y = round(syc-sxr;sigdigits=3) 
-    # pmax_y = round(syc+sxr;sigdigits=3) 
-    # bottom_string() = latexstring("~~N=($(N[1]),$(N[2]))~~D=(($(D[1]),$(D[2]))~~N_l=div(N-2,D)+2=($(Nl[1]),$(Nl[2]))")
     bottom_string() = latexstring("~N_l=[~(N-2)\\div D~]+2=($(Nl[1]),$(Nl[2]))")
     text!(ax1,(Δ[1],-Δ[2]),text=bottom_string(),align=(:left,:tom))
     save("split_grid.png",fig)
