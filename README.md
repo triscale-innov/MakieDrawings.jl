@@ -18,3 +18,9 @@
      MakieDrawings.drawsource2D()
 ````     
 ![](docs/source_grid.png)
+````julia
+    using MakieDrawings
+     MakieDrawings.drawgrid2D()
+````     
+![](docs/basic_grid.png)
+
